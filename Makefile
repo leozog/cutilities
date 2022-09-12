@@ -1,5 +1,5 @@
 TARGET = test
-SRCS = main.c
+SRCS = main.c darray.c
 
 CC = gcc
 CFLAGS = -Wall
