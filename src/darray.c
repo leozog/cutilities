@@ -1,6 +1,5 @@
 #include "darray.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 void darray_new(darray *a, int n, void *(*fn_new)(), void (*fn_free)(void *))
 {
@@ -36,12 +35,11 @@ void darray_i_del(darray *a, int i)
     if(a->p[i] == NULL) return;
     a->fn_free(a->p[i]);
     a->p[i] = NULL;
-    a->size--;
-    if(i != a->size) return;
-    for(void **x = a->p + i; x >= a->p; x--)
+    if(i != a->size - 1) return;
+    for(void **x = a->p + i - 1; x >= a->p; x--)
     {
-        if(*x != NULL) return;
         a->size--;
+        if(*x != NULL) return;
     }
 }
 
