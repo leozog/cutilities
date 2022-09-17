@@ -5,8 +5,10 @@
 #include <time.h>
 
 #include "darray.h"
+#include "vec.h"
+#include "random.h"
 
-typedef struct dstr_s
+/*typedef struct dstr_s
 {
     char *p;
     int len;
@@ -25,22 +27,49 @@ void dstr_free(void *a)
 {
     free(((dstr *)a)->p);
     free((dstr *)a);
+}*/
+
+void *v3_new()
+{
+    ivec3 *a = malloc(sizeof(ivec3));
+    a->x = 1;
+    a->y = 1;
+    a->z = 1;
+    return a;
 }
+
+void v3_free(void *a)
+{
+    free(a);
+}
+
+void print(darray *a)
+{
+    printf("print:\n");
+    for(int i = 0; i < a->size; i++)
+    {
+        ivec3 *e = darray_i(a, i);
+        printf("  %2d:  %2d, %2d, %2d\n", i, e->x, e->y, e->z);
+    }
+    
+}
+
 
 int main(int argc, const char **argv)
 {
-    darray tab;
-    darray_new(&tab, 100, dstr_new, dstr_free);
-    dstr *x = darray_i(&tab, 5);
-    dstr *y = darray_i(&tab, 0);
-    strcpy(x->p, "testy");
-    strcpy(y->p, "abc");
-    printf("s: %d, %s\n", tab.size, x->p);
-    darray_i_del(&tab, 5);
-    printf("s: %d, %s\n", tab.size, y->p);
-    darray_i_del(&tab, 5);
+    rand_SEED(time(NULL));
+    printf("random: %d\n", rand_int(0,10));
 
+    darray tab;
+    darray_new(&tab, 16, v3_new, v3_free);
+    ivec3 *x = darray_i(&tab, 5);
+    *x = ivec3_set(54, 16, 64);
+    print(&tab);
+    darray_i_del(&tab, 5);
+    print(&tab);
     darray_free(&tab);
+
+    
 
     return 0;
 }

@@ -1,5 +1,5 @@
 TARGET = test
-SRCS = main.c darray.c vec.c
+SRCS = main.c darray.c vec.c random.c
 
 CC = gcc
 CFLAGS = -Wall
