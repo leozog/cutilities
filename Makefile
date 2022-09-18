@@ -7,7 +7,7 @@ LIBS = -lm
 
 OBJS = $(patsubst %,obj/%,$(patsubst %.c,%.o,$(SRCS)))
 
-all: $(TARGET)
+test: $(TARGET)
 
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) $(LIBS) -o $(TARGET) $(OBJS)

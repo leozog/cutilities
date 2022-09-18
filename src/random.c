@@ -20,8 +20,18 @@ double rand_float(double a, double b)
     return (double)rand()/(double)(RAND_MAX/a);
 }
 
+int rand_chance(double a)
+{
+    if(a >= 1) return 1;
+    if(a <= 0) return 0;
+    if(rand_float(0, 1) < a)
+        return 1;
+    else
+        return 0;
+}
 
-//Original algorithm by nowl
+
+//Original code by nowl
 //https://gist.github.com/nowl/828013
 
 static const unsigned char HASH[] = {
