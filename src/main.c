@@ -58,7 +58,15 @@ void print(darray *a)
 int main(int argc, const char **argv)
 {
     rand_SEED(time(NULL));
-    printf("random: %d\n", rand_int(0,10));
+    //printf("random: %d\n", time(NULL));
+    printf("random f: %lf\n", rand_float(0.0, 5.0));
+    printf("random c: %d\n", rand_chance(0.7));
+    int a = 0;
+    for(int i = 0; i < 10000; i++)
+    {
+        a += rand_chance(0.7);
+    }
+    printf("random 10000: %lf\n", (double)a/10000);
 
     darray tab;
     darray_new(&tab, 16, v3_new, v3_free);

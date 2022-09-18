@@ -8,6 +8,7 @@ void rand_SEED(int a)
 {
     SEED = a;
     srand(a);
+    rand();
 }
 
 int rand_int(int a, int b)
@@ -17,7 +18,7 @@ int rand_int(int a, int b)
 
 double rand_float(double a, double b)
 {
-    return (double)rand()/(double)(RAND_MAX/a);
+    return a + (double)rand() / (double)(RAND_MAX / (b - a));
 }
 
 int rand_chance(double a)
